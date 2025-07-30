@@ -1,0 +1,101 @@
+The `max_completion_tokens` parameter controls the **maximum number of tokens the model can generate in its output**.
+
+---
+
+### 🧮 What Are Tokens?
+
+* A **token** is a chunk of text—typically a word piece or syllable.
+* Example:
+  `"The cat sat on the mat."` → might be **6–8 tokens**.
+* Tokens are used both for **input** and **output**.
+
+---
+
+### 🔢 What is `mmax_completion_tokens`?
+
+* `max_completion_tokens` defines the **maximum number of tokens the model is allowed to generate** in the response.
+* It **does not include the prompt** tokens—only the **completion** (output).
+
+#### Example:
+
+```python
+from langchain.llms import OpenAI
+
+llm = OpenAI(
+    temperature=0.7,
+    max_completion_tokens=100  # Limits response to 100 tokens max
+)
+```
+
+---
+
+### 🎯 Why is `max_tokens` Important?
+
+| Reason                      | Description                                                |
+| --------------------------- | ---------------------------------------------------------- |
+| **Control response length** | Prevents the model from going on too long.                 |
+| **Avoid costs**             | Most APIs charge by the number of tokens (input + output). |
+| **Performance**             | Shorter completions are faster and more predictable.       |
+| **Token limits**            | You can't exceed the total token limit of the model.       |
+
+---
+
+### 🚫 Model Token Limits (OpenAI examples)
+
+| Model         | Max Input + Output Tokens              |
+| ------------- | -------------------------------------- |
+| GPT-3.5 Turbo | 4,096 or 16,384 (depending on version) |
+| GPT-4         | 8,192 or 32,768                        |
+| Claude 3 Opus | Up to 200,000                          |
+| Mistral       | 16,000 (varies)                        |
+
+🧠 You must ensure:
+
+input_tokens + max_tokens ≤ model_limit
+
+
+LangChain handles this partially, but you should still **watch your prompt sizes**.
+
+---
+
+### 🧪 Example: Prompt vs `max_tokens`
+
+Prompt:
+Write a summary of the causes of World War I.
+
+| `max_tokens` | Result                           |
+| ------------ | -------------------------------- |
+| 20           | Very short, may be cut off       |
+| 100          | Short paragraph                  |
+| 500          | Detailed summary                 |
+| 1000+        | Long-form, possibly essay-length |
+
+---
+
+### ⚠️ Important Notes
+
+* If the response **finishes early**, the model may have naturally completed.
+* If the response **hits the `max_tokens` limit**, it may **cut off mid-sentence**.
+* In LangChain, `max_tokens` can be passed when initializing the model:
+
+```python
+llm = OpenAI(model="text-davinci-003", max_completion_tokens=150)
+```
+
+Or when using chains:
+
+```python
+llm_chain = LLMChain(llm=OpenAI(max_completion_tokens=200), prompt=my_prompt)
+```
+
+---
+
+### ✅ Summary
+
+* `max_completion_tokens` = max length of model output.
+* Use it to **limit length**, **reduce cost**, and **control response size**.
+* Be aware of **model token limits** (prompt + response).
+* Too low? → **Truncated output**
+  Too high? → **Wasted tokens/cost**
+
+---
