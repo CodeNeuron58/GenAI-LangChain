@@ -17,3 +17,7 @@ This is the 2nd version of the chatbot.I’ve taken things up a notch! Now, the 
 * **Better LangChain Handling**: The bot is still working through how to seamlessly integrate with LangChain’s memory systems. It’s an improvement, but far from flawless.
 
 ---
+
+## **Version 3**
+
+This version introduces structured messages using `SystemMessage`, `HumanMessage`, and `AIMessage`. By organizing the conversation this way, the chatbot becomes more robust, maintainable, and easier to extend. Structured messages help keep track of roles and context, making the system more reliable and flexible for future improvements or integrations.
