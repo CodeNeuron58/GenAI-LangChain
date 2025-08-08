@@ -3,8 +3,8 @@ import os
 
 
 # Remove HF_HOME if it was mistakenly set
-if 'HF_HOME' in os.environ:
-    del os.environ['HF_HOME']
+# if 'HF_HOME' in os.environ:
+#     del os.environ['HF_HOME']
 
 llm = HuggingFacePipeline.from_model_id(
     model_id='TinyLlama/TinyLlama-1.1B-Chat-v1.0',
