@@ -38,3 +38,28 @@ While f-strings in Python allow you to insert variables into strings, **PromptTe
 * **Better Reusability**: Templates can be saved and reused across different contexts.
 * **Validation**: It includes built-in input validation to catch errors when inputs don't match the expected format.
 * **Chaining Capabilities**: Langchain prompt templates integrate well with Langchain's chain system, allowing you to build complex workflows.
+
+## Dynamic Prompt Templates
+
+Dynamic prompt templates allow you to create messages that adapt based on input or context, making them ideal for personalized or context-sensitive responses.
+
+### Example of a Dynamic Prompt Template
+
+```python
+from langchain.prompts import PromptTemplate
+
+dynamic_prompt = PromptTemplate(
+    input_variables=["user_name", "user_query"],
+    template="Hello {user_name}, how can I assist you with {user_query}?"
+)
+```
+
+### Key Features
+
+1. **Personalization**: Tailors the message based on variables (e.g., user name, query).
+2. **Flexibility**: Adjusts to different inputs, enabling dynamic workflows.
+3. **Real-time Adaptation**: Adapts instantly based on the provided input.
+
+### Why Use Dynamic Prompts?
+
+Dynamic templates are perfect for scenarios like customer support, personalized assistants, or real-time data queries, where the response needs to change based on the user's input or context.
