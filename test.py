@@ -1,3 +1,5 @@
+"""Test module for checking LangChain version and virtual environment setup."""
+
 import langchain
 
 print(langchain.__version__)
