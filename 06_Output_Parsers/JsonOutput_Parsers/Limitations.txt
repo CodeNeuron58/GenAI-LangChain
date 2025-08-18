@@ -1,0 +1,30 @@
+Let's explore a limitation of JSON Output Parsers through an example.
+
+Consider sending this prompt:
+prompt = "Tell me 10 facts about humans"
+
+With a JSON Output Parser, you typically get a fixed structure like:
+{
+    "facts": [
+        "fact1",
+        "fact2",
+        ...
+        "fact10"
+    ]
+}
+
+This represents a single key containing an array of 10 facts.
+
+However, what if we want a more flexible structure, such as:
+{
+    "fact1": "detail1",
+    "fact2": "detail2",
+    ...
+    "fact10": "detail10"
+}
+
+Where each fact has its own key?
+
+Standard JSON Output Parsers are limited in handling such dynamic structural changes. This is where Structured Output Parsers become valuable, as they offer greater flexibility in output formatting and structure.
+
+These limitations demonstrate why we need StructuredOutput parsers.
