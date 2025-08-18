@@ -1,153 +1,46 @@
-1. Generative AI Track
+Generative AI Roadmap
 │
-├── 1.1 LLM Fundamentals
-│   ├── Core Concepts
-│   │   ├── Transformer Architecture
-│   │   │   ├── Self-attention Mechanism
-│   │   │   ├── Positional Encoding
-│   │   │   └── Multi-head Attention
-│   │   ├── Training Approaches
-│   │   │   ├── Pretraining
-│   │   │   └── Fine-tuning
-│   │   ├── Generation Parameters
-│   │   │   ├── Temperature
-│   │   │   ├── Top-k Sampling
-│   │   │   └── Top-p (Nucleus) Sampling
-│   │   └── Technical Limitations
-│   │       ├── Tokenization
-│   │       └── Context Window
-│   ├── Leading Models
-│   │   ├── Commercial
-│   │   │   ├── GPT-4 (OpenAI)
-│   │   │   ├── Claude 3 (Anthropic)
-│   │   │   └── Gemini (Google)
-│   │   └── Open Source
-│   │       ├── LLaMA 2 (Meta)
-│   │       ├── Mistral
-│   │       └── Command-R
-│   └── Development Platforms
-│       ├── Cloud APIs
-│       │   ├── OpenAI
-│       │   ├── Anthropic
-│       │   └── HuggingFace
-│       └── Local Deployment
-│           ├── Ollama
-│           └── LM Studio
+├── 1. GenAI Foundations & LLM Basics
+│   ├── What is Generative AI
+│   ├── What are LLMs (Large Language Models)
+│   ├── Applications of LLMs
+│   └── Prompt Engineering (Zero-shot, Few-shot, CoT)
 │
-├── 1.2 Prompt Engineering
-│   ├── Core Techniques
-│   │   ├── Basic Prompting
-│   │   │   ├── Zero-shot
-│   │   │   └── Few-shot
-│   │   ├── Advanced Methods
-│   │   │   ├── Chain-of-Thought (CoT)
-│   │   │   └── Tree of Thoughts (ToT)
-│   │   └── Structured Approaches
-│   │       ├── System Messages
-│   │       ├── Role-based Prompting
-│   │       └── Instruction Templates
-│   ├── Design Patterns
-│   │   ├── ReAct (Reasoning + Action)
-│   │   ├── Self-questioning
-│   │   └── Recursive Refinement
-│   └── Development Tools
-│       ├── Template Management
-│       │   └── LangChain Templates
-│       └── Quality Assurance
-│           ├── PromptLayer
-│           ├── Promptfoo
-│           └── LangSmith
+├── 2. LangChain Fundamentals
+│   ├── What is LangChain
+│   ├── LangChain Architecture & Components
+│   └── Integrating LLMs with LangChain
 │
-├── 1.3 Development Frameworks
-│   ├── LangChain
-│   │   ├── Core Components
-│   │   │   ├── Chains
-│   │   │   ├── Agents
-│   │   │   └── Memory Systems
-│   │   └── Integration Tools
-│   │       ├── API Connectors
-│   │       ├── Search Tools
-│   │       └── Utility Functions
-│   ├── LlamaIndex
-│   │   ├── Data Structures
-│   │   │   ├── List Index
-│   │   │   ├── Tree Index
-│   │   │   ├── Vector Index
-│   │   │   └── Keyword Index
-│   │   └── Query Processing
-│   │       ├── Retrieval Engines
-│   │       └── Response Synthesis
-│   └── Enterprise Solutions
-│       ├── Haystack
-│       │   ├── RAG Pipelines
-│       │   └── Search Integration
-│       └── Orchestration Tools
-│           ├── CrewAI
-│           ├── AutoGen
-│           └── Semantic Kernel
+├── 3. Working with LLMs
+│   ├── Text Generation with LLMs
+│   ├── Chat Models (ChatOpenAI, ChatAnthropic, etc.)
+│   └── Model Configuration (temperature, max tokens, etc.)
 │
-├── 1.4 RAG Systems
-│   ├── Vector Embeddings
-│   │   ├── Providers
-│   │   │   ├── OpenAI
-│   │   │   ├── Cohere
-│   │   │   └── Google
-│   │   └── Open Models
-│   │       ├── BGE
-│   │       ├── E5
-│   │       └── Instructor
-│   ├── Storage Solutions
-│   │   ├── Self-hosted
-│   │   │   ├── FAISS
-│   │   │   └── ChromaDB
-│   │   └── Cloud Services
-│   │       ├── Pinecone
-│   │       ├── Weaviate
-│   │       └── Qdrant
-│   ├── Data Processing
-│   │   ├── Document Handling
-│   │   │   ├── Format Support
-│   │   │   └── Loading Tools
-│   │   └── Text Processing
-│   │       ├── Chunking Strategies
-│   │       └── Metadata Management
-│   └── Search Implementation
-│       ├── Vector Search
-│       ├── Hybrid Search
-│       └── Context Management
+├── 4. Prompt Templates & Roles
+│   ├── PromptTemplate
+│   ├── ChatPromptTemplate
+│   ├── SystemMessage / HumanMessage / AIMessage
+│   └── Placeholders, InputVariables, Formatting
 │
-└── 1.5 AI Agents
-    ├── Architecture
-    │   ├── Core Components
-    │   │   ├── Planning Module
-    │   │   ├── Execution Engine
-    │   │   └── Observation System
-    │   └── Integration Capabilities
-    │       ├── API Connectivity
-    │       ├── File Operations
-    │       └── Web Interaction
-    ├── Implementation Types
-    │   ├── Single Agents
-    │   │   └── ReAct Pattern
-    │   └── Multi-agent Systems
-    │       ├── CrewAI
-    │       ├── AutoGen
-    │       └── Task Decomposition
-    ├── Tool Integration
-    │   ├── Built-in Tools
-    │   │   ├── Web Search
-    │   │   ├── Calculators
-    │   │   └── Code Execution
-    │   └── Custom Development
-    │       ├── Tool Definition
-    │       └── Integration Methods
-    └── Applications
-        ├── Interactive Systems
-        │   └── AI Assistants
-        ├── Automation
-        │   ├── Workflow Processing
-        │   └── Document Generation
-        └── Autonomous Agents
-            ├── Research
-            ├── Code Development
-            └── Web Navigation
+├── 5. Structured Outputs
+│   ├── JSON, TypedDict, Pydantic Parsing
+│   └── Structured Output Parsers
+│
+├── 6. Chains and Runnables
+│   ├── Simple Chains
+│   ├── Sequential & Custom Chains
+│   └── Runnables (Composable Interfaces)
+│
+├── 7. Retrieval-Augmented Generation (RAG)
+│   ├── Document Loaders
+│   ├── Text Splitters
+│   ├── Embedding Models (OpenAI, HuggingFace)
+│   ├── Vector Stores (FAISS, Chroma, etc.)
+│   ├── Retrievers
+│   └── RAG Pipeline (Query → Retrieve → Generate)
+│
+└── 8. Agents and Tool Use
+    ├── Tool Definitions
+    ├── Agent Executors
+    ├── Multi-tool Agents
+    └── Building Autonomous Agents
