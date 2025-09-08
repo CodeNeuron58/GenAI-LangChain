@@ -27,7 +27,14 @@ prompt2 = PromptTemplate(
 )
 
 # Initialize the model (in this case, a language model from OpenAI)
-model = ChatOpenAI()
+model = ChatOpenAI(
+    # model_name="meta-llama/llama-3.1-405b-instruct:free",
+    model_name = "mistralai/mistral-7b-instruct:free",
+    # model_name = "tngtech/deepseek-r1t2-chimera:free",
+    # model_name = "deepseek/deepseek-r1-0528:free",
+
+    openai_api_key=api_token
+)
 
 # Initialize the output parser (for string output parsing)
 parser = StrOutputParser()
