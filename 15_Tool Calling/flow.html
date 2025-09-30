@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Message History Flow</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 40px 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .container {
+            max-width: 800px;
+            background: white;
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        h1 {
+            color: #667eea;
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 28px;
+        }
+        .flow-box {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 20px 0;
+            position: relative;
+        }
+        .step-label {
+            background: #667eea;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+        .message {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+            border-left: 4px solid #28a745;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        .message.ai {
+            border-left-color: #667eea;
+        }
+        .message-type {
+            font-weight: bold;
+            color: #666;
+            font-size: 12px;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+        .message-content {
+            color: #333;
+            font-size: 15px;
+        }
+        .arrow {
+            text-align: center;
+            font-size: 36px;
+            color: #667eea;
+            margin: 15px 0;
+            font-weight: bold;
+        }
+        .code-inline {
+            background: #2d2d2d;
+            color: #a6e22e;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+        }
+        .highlight-box {
+            background: #fff3cd;
+            border: 2px solid #ffc107;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 25px 0;
+        }
+        .highlight-box strong {
+            color: #856404;
+            font-size: 16px;
+        }
+        .list-container {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border: 2px solid #e0e0e0;
+        }
+        .list-title {
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+        .count {
+            background: #667eea;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+            margin-left: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📝 Message History Flow</h1>
+        
+        <!-- STEP 1 -->
+        <div class="flow-box">
+            <div class="step-label">STEP 1: Initial Query</div>
+            <div class="list-container">
+                <div class="list-title">messages = <span class="count">1 item</span></div>
+                <div class="message">
+                    <div class="message-type">👤 Human</div>
+                    <div class="message-content">"Can you multiply 3 with 1000?"</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="arrow">↓</div>
+
+        <!-- STEP 2 -->
+        <div class="flow-box">
+            <div class="step-label">STEP 2: LLM Responds</div>
+            <p style="margin: 15px 0; color: #666;">
+                <code class="code-inline">result = llm_with_tools.invoke(messages)</code>
+            </p>
+            <div class="message ai">
+                <div class="message-type">🤖 AI</div>
+                <div class="message-content">
+                    "I will use the multiply tool..."<br>
+                    <small style="color: #666;">+ Tool Call: multiply(a=3, b=1000)</small>
+                </div>
+            </div>
+        </div>
+
+        <div class="arrow">↓</div>
+
+        <!-- STEP 3 -->
+        <div class="flow-box" style="border: 3px solid #ffc107;">
+            <div class="step-label" style="background: #ffc107; color: #000;">STEP 3: Append to History</div>
+            <p style="margin: 15px 0; color: #666;">
+                <code class="code-inline">messages.append(result)</code>
+            </p>
+            <div class="list-container">
+                <div class="list-title">messages = <span class="count">2 items</span></div>
+                <div class="message">
+                    <div class="message-type">👤 Human</div>
+                    <div class="message-content">"Can you multiply 3 with 1000?"</div>
+                </div>
+                <div class="message ai">
+                    <div class="message-type">🤖 AI</div>
+                    <div class="message-content">
+                        "I will use the multiply tool..."<br>
+                        <small style="color: #666;">+ Tool Call: multiply(a=3, b=1000)</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- EXPLANATION -->
+        <div class="highlight-box">
+            <strong>💡 Why append the AI response?</strong>
+            <p style="margin: 10px 0 0 0; color: #333;">
+                The LLM needs to see the <strong>complete conversation history</strong> every time you call it. 
+                By appending the AI's response to the messages list, the next interaction will have 
+                full context of what was discussed and what tools were called.
+            </p>
+        </div>
+
+        <div style="background: #e3f2fd; padding: 20px; border-radius: 8px; margin-top: 25px;">
+            <strong style="color: #1976d2;">🔑 Think of it as:</strong>
+            <p style="margin: 10px 0 0 0; color: #333;">
+                A <strong>conversation transcript</strong> that grows with each message. Without it, 
+                the AI would have amnesia and forget what it just said!
+            </p>
+        </div>
+    </div>
+</body>
+</html>

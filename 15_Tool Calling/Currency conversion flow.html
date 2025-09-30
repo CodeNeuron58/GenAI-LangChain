@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Currency Tool Flow</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        h1 {
+            color: #667eea;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .flow-step {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 20px 0;
+            border-left: 5px solid #667eea;
+        }
+        .step-num {
+            background: #667eea;
+            color: white;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        .step-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 15px;
+        }
+        .box {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        .user-query {
+            border-left: 4px solid #28a745;
+        }
+        .ai-response {
+            border-left: 4px solid #667eea;
+        }
+        .tool-box {
+            border-left: 4px solid #ff6b6b;
+        }
+        .result-box {
+            border-left: 4px solid #ffc107;
+        }
+        .arrow {
+            text-align: center;
+            font-size: 32px;
+            color: #667eea;
+            margin: 10px 0;
+        }
+        .code {
+            background: #2d2d2d;
+            color: #a6e22e;
+            padding: 8px 12px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+            display: inline-block;
+            margin: 5px 0;
+        }
+        .label {
+            font-weight: bold;
+            color: #666;
+            font-size: 12px;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+        .content {
+            color: #333;
+            line-height: 1.6;
+        }
+        .highlight {
+            background: #fff3cd;
+            padding: 15px;
+            border-radius: 8px;
+            border: 2px solid #ffc107;
+            margin: 15px 0;
+        }
+        .data-flow {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 10px 0;
+            flex-wrap: wrap;
+        }
+        .data-item {
+            background: #e3f2fd;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+            color: #1565c0;
+            font-weight: 500;
+        }
+        .flow-arrow {
+            color: #667eea;
+            font-size: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>💱 Multi-Tool Currency Conversion Flow</h1>
+        
+        <!-- STEP 1 -->
+        <div class="flow-step">
+            <div class="step-title">
+                <span class="step-num">1</span>
+                User Query
+            </div>
+            <div class="box user-query">
+                <div class="content">
+                    "What is the conversion factor between INR and USD, and can you convert 10 INR to USD?"
+                </div>
+            </div>
+        </div>
+
+        <div class="arrow">↓</div>
+
+        <!-- STEP 2 -->
+        <div class="flow-step">
+            <div class="step-title">
+                <span class="step-num">2</span>
+                AI Decides Which Tools to Use
+            </div>
+            <div class="box ai-response">
+                <div class="label">🤖 AI Response</div>
+                <div class="content">
+                    "I need to call two tools:"<br>
+                    <code class="code">get_conversion_factor(INR, USD)</code><br>
+                    <code class="code">convert(10, rate)</code>
+                </div>
+            </div>
+        </div>
+
+        <div class="arrow">↓</div>
+
+        <!-- STEP 3 -->
+        <div class="flow-step">
+            <div class="step-title">
+                <span class="step-num">3</span>
+                Execute Tool #1: Get Conversion Rate
+            </div>
+            <div class="box tool-box">
+                <div class="label">🔧 Tool: get_conversion_factor</div>
+                <div class="content">
+                    <strong>Input:</strong> base_currency='INR', target_currency='USD'<br>
+                    <strong>API Call:</strong> exchangerate-api.com<br>
+                    <strong>Output:</strong> {"conversion_rate": 0.01127, ...}
+                </div>
+            </div>
+            <div class="highlight">
+                <strong>📊 Extract Rate:</strong>
+                <div class="data-flow">
+                    <div class="data-item">conversion_rate = 0.01127</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="arrow">↓</div>
+
+        <!-- STEP 4 -->
+        <div class="flow-step">
+            <div class="step-title">
+                <span class="step-num">4</span>
+                Execute Tool #2: Convert Currency
+            </div>
+            <div class="box tool-box">
+                <div class="label">🔧 Tool: convert</div>
+                <div class="content">
+                    <strong>Input:</strong> base_currency_value=10<br>
+                    <strong>Injected:</strong> conversion_rate=0.01127 <span style="color: #ff6b6b;">(from Tool #1)</span><br>
+                    <strong>Calculation:</strong> 10 × 0.01127 = 0.1127<br>
+                    <strong>Output:</strong> 0.1127 USD
+                </div>
+            </div>
+        </div>
+
+        <div class="arrow">↓</div>
+
+        <!-- STEP 5 -->
+        <div class="flow-step">
+            <div class="step-title">
+                <span class="step-num">5</span>
+                Final AI Response
+            </div>
+            <div class="box result-box">
+                <div class="label">✅ Final Answer</div>
+                <div class="content">
+                    "The conversion factor between INR and USD is 0.01127.<br>
+                    10 INR converts to approximately <strong>0.11 USD</strong>."
+                </div>
+            </div>
+        </div>
+
+        <!-- KEY INSIGHT -->
+        <div style="background: #e8f5e9; padding: 20px; border-radius: 8px; margin-top: 30px; border-left: 5px solid #4caf50;">
+            <strong style="color: #2e7d32; font-size: 18px;">🔑 Key Insight: Tool Chaining</strong>
+            <div class="data-flow" style="margin-top: 15px;">
+                <div class="data-item" style="background: #ffebee; color: #c62828;">Tool #1 Output</div>
+                <div class="flow-arrow">→</div>
+                <div class="data-item" style="background: #fff3e0; color: #e65100;">Extract Data</div>
+                <div class="flow-arrow">→</div>
+                <div class="data-item" style="background: #e8f5e9; color: #2e7d32;">Tool #2 Input</div>
+            </div>
+            <p style="margin: 15px 0 0 0; color: #333;">
+                The output from <strong>get_conversion_factor</strong> is extracted and passed as input to <strong>convert</strong>. 
+                This is called <strong>tool chaining</strong> - using one tool's result in another tool.
+            </p>
+        </div>
+    </div>
+</body>
+</html>
